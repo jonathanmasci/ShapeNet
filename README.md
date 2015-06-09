@@ -19,24 +19,23 @@ Python multiprocessing library.
 
 ## Code organization
 Code is organized as follows:
-  - layers:   contains the implementation of the layers to be used for the 
+  - **layers**:   contains the implementation of the layers to be used for the 
               model construction, the losses and some utils functions to 
               renormalize the weights etc.
               If you want to extend the library then this is the place for you.
-              Each layer implements a very basic interface ILayer or
-              IShapeNetLayer.
-  - model:    contains the implementation of the actual models, which are built
+              Each layer implements a very basic interface.
+  - **model**:    contains the implementation of the actual models, which are built
               as collection of layers. 
-  - configs:  some example configuration files. This should be the only file
+  - **configs**:  some example configuration files. This should be the only file
               to create to train a standard model.
-  - optim:    update rules for learning. 
-  - perfeval: Performance monitor is the object which is used to perform early stopping and
+  - **optim**:    update rules for learning. 
+  - **perfeval**: Performance monitor is the object which is used to perform early stopping and
               to monitor performance while training. A simple AUC monitor is
               implemented.
-  - producer: data generation script. It generates the training samples,
+  - **producer**: data generation script. It generates the training samples,
               serializes them via protobuf and puts them in a zmq queue.
-  - proto:    serialization interfaces, to be compiled with protobuf for python
-  - queue:    the zmq queue which acts as broker between the trainer and the
+  - **proto**:    serialization interfaces, to be compiled with protobuf for python
+  - **queue**:    the zmq queue which acts as broker between the trainer and the
               producer
   - train_lscnn.py: trains a LSCNN network
 
