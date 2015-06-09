@@ -43,29 +43,19 @@ Code is organized as follows:
 ## Usage
   - Starting from one of the configuration files define the model and all the
     necessary data paths.
-  - Start the queue process by executing, in a separate shell (or better in a
+  - Start the *queue* process by executing, in a separate shell (or better in a
     screen session):
       $ python streamer_device.py N <inport> <outport>
     with N = size of the queue, inport and outport are optional and required
     if multiple queues are required (multiple experiments with different data).
-  - Start the data producer in a separate shell (or better in a screen
+  - Start the data *producer* in a separate shell (or better in a screen
     session):
-      $ python producer.py --desc_dir <path to descs folder> --nthreads 2
-        --bsize 100 --alltomem true --queue_size 10000
+      $ python producer/lscnn_producer.py --desc_dir <path_to_descs> --shape_dir <path_to_shapes> --const_fun 0 --alltomem 1 --batch_size -1 --queue_size 5 --nthreads 2
+    In our SGP paper we use geovec descriptors.
     Of course bsize and queue_size can be adjusted accordingly. 
-  - Start training using
-      $ THEANO_FLAGS='floatX=float32,device=gpu0,optimizer_including=cudnn' 
-        train.py --config_file <path to configuration> --mode train [--inport port]
-    you can use gpuN with N the number of the GPU, on bestiola there are only
-    two GPUs. Device can also be set to cpu and is still doable to train a
-    model without convolutions this way.
+  - Start training using:
+      $ THEANO_FLAGS='device=gpu0,optimizer_including=cudnn' python train_lscnn.py --config_file configs/SGP15/FAUST/SGP15_wftnet16_geovec_bspline.yaml --mode train --l2reg 0.0 --queue_size 5
 
 ## Saving features
-  - Use train.py, or train_shapenet.py, and set 
-      - mode: dump
-      - model_to_load: pkl of the model to be used (i.e. suffix -last)
-      - output_dump: where to save features (they will be named as the input
-        file)
-      - desc_dir: which descriptors to use
-
+      $ THEANO_FLAGS='device=gpu1,optimizer_including=cudnn' python train_lscnn.py --config_file  configs/SGP15/FAUST/SGP15_wftnet16_geovec_bspline.yaml --mode dump --queue_size 5 --l2reg 0.0 --model_to_load <your_pkl_for_the_model> --output_dump <where_to_save> --desc_dir <path_to_descs> --shape_dir <path_to_shapes>
 
