@@ -1,0 +1,38 @@
+{
+    out_path: !!str "./experiments/",
+    iter_per_epoch: 100,
+    margin: 5.,
+    alpha: .9, # negative weight
+    seed: &seed 42,
+    rng: &rng !!python/object/apply:numpy.random.RandomState {args:[*seed]},
+    n_out: &n_out 16,
+    #w_constraints should be refactored as this version implies that you call
+    #eval to get the proper functions
+    w_constraints: !!str "[
+      lambda x : x, lambda x : x,
+      lambda x : x, 
+      lambda x : x,
+      lambda x : x,
+      lambda x : x 
+ ]", 
+    layers: [
+        !!python/object/new:layers.layers_wft.WFTMLPLayer {
+        args:[
+          *rng, 150, 16, 'FC'],
+        kwds:{
+          'activation': !!python/name:layers.utils.relu ,
+        }
+        },
+        !!python/object/new:layers.layers_wft.WFTLayerBSpline {
+        args:[
+          *rng, 16, 16, 100, 0, 3000, 'FBLI'],
+        kwds:{
+          'activation': !!python/name:layers.utils.linear_activation ,
+        }
+      }
+      ],
+    drop: [0.0, 0.0],
+    n_iter: 250,
+    iter_eval: 10,
+}
+

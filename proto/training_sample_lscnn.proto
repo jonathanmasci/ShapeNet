@@ -1,0 +1,39 @@
+
+message training_sample_lscnn {
+  optional bytes xp           = 1; 
+  repeated int32 xp_shape     = 2;
+  optional bytes Vxp          = 3;
+  repeated int32 Vxp_shape    = 4;
+  optional bytes Axp          = 5;
+  repeated int32 Axp_shape    = 6;
+  optional bytes Lxp          = 7;
+  repeated int32 Lxp_shape    = 8;
+  
+  optional bytes xn           = 9; 
+  repeated int32 xn_shape     = 10;
+  optional bytes Vxn          = 11;
+  repeated int32 Vxn_shape    = 12;
+  optional bytes Axn          = 13;
+  repeated int32 Axn_shape    = 14;
+  optional bytes Lxn          = 15;
+  repeated int32 Lxn_shape    = 16;
+
+  optional bytes yp           = 17; 
+  repeated int32 yp_shape     = 18;
+  optional bytes Vyp          = 19;
+  repeated int32 Vyp_shape    = 20;
+  optional bytes Ayp          = 21;
+  repeated int32 Ayp_shape    = 22;
+  optional bytes Lyp          = 23;
+  repeated int32 Lyp_shape    = 24;
+  
+  optional bytes yn           = 25; 
+  repeated int32 yn_shape     = 26;
+  optional bytes Vyn          = 27;
+  repeated int32 Vyn_shape    = 28;
+  optional bytes Ayn          = 29;
+  repeated int32 Ayn_shape    = 30;
+  optional bytes Lyn          = 31;
+  repeated int32 Lyn_shape    = 32;
+}
+
