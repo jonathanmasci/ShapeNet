@@ -1,5 +1,5 @@
-## DeepShape
-DeepShape is a lightweight deep-learning framework built with Theano and ZMQ.
+## ShapeNet
+ShapeNet is a lightweight deep-learning framework built with Theano and ZMQ.
 It has been developed to learn localized shape descriptors from 3D meshes but
 it is pretty flexible and can be used in more general settings.
 
@@ -38,6 +38,7 @@ Code is organized as follows:
   - **queue**:    the zmq queue which acts as broker between the trainer and the
               producer
   - train_lscnn.py: trains a LSCNN network
+  - dump_beta.py: saves the filter coefficients of a bspline layer in a LSCNN network
 
 ## Usage
   - Starting from one of the configuration files define the model and all the
