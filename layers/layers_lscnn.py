@@ -40,7 +40,7 @@ class ILSCNNLayer:
   def set_params(self, w):
     raise NotImplementedError(str(type(self)) + " does not implement set_params.")   
 
-class LSCNNLayer(LSCNNLayer):
+class LSCNNLayer(ILSCNNLayer):
   def __init__(self, rng, nin, nout, K, taus, layer_name, 
           irange=0.001, activation=relu, init_uniform=True):
     self.rng = rng

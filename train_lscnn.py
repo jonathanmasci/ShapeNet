@@ -24,7 +24,7 @@ import scipy.sparse as sp
 import scipy.io
 import h5py
 
-from layers.layers_shapenet import *
+from layers.layers_lscnn import *
 from layers.losses import siamese_loss 
 from model.lscnn import LSCNN
 from optim.optim import adadelta_updates, train

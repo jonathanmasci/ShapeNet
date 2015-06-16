@@ -16,14 +16,14 @@
       lambda x : x 
  ]", 
     layers: [
-        !!python/object/new:layers.layers_wft.WFTMLPLayer {
+        !!python/object/new:layers.layers_lscnn.LSCNNMLPLayer {
         args:[
           *rng, 150, 16, 'FC'],
         kwds:{
           'activation': !!python/name:layers.utils.relu ,
         }
         },
-        !!python/object/new:layers.layers_wft.WFTLayerBSpline {
+        !!python/object/new:layers.layers_lscnn.LSCNNLayerBSpline {
         args:[
           *rng, 16, 16, 100, 0, 3000, 'FBLI'],
         kwds:{

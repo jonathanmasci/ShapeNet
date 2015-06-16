@@ -3,7 +3,6 @@ import sys
 import time
 import zmq
 import random
-from proto import training_sample_pb2
 import numpy as np
 import scipy.misc
 import argparse
