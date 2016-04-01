@@ -63,3 +63,20 @@ $ THEANO_FLAGS='device=gpu0,optimizer_including=cudnn' python train_lscnn.py --c
 ```
 $ THEANO_FLAGS='device=gpu1,optimizer_including=cudnn' python train_lscnn.py --config_file  configs/SGP15/FAUST/SGP15_wftnet16_geovec_bspline.yaml --mode dump --queue_size 5 --l2reg 0.0 --model_to_load <your_pkl_for_the_model> --output_dump <where_to_save> --desc_dir <path_to_descs> --shape_dir <path_to_shapes>
 ```
+
+## Demo
+In **data** there is a toy dataset, subset of FAUST. For the demo execute the
+following commands:
+
+```
+python queue/streamer_device.py --queue_size 2 &
+```
+
+```
+python producer/lscnn_producer.py --desc_dir data/descs/geovec/train/ --shape_dir data/shapes/train/ --const_fun 0 --alltomem 1 --batch_size -1 --queue_size 5 --nthreads 2
+```
+
+```
+THEANO_FLAGS='device=gpu0,optimizer_including=cudnn' python train_lscnn.py --config_file configs/SGP15/FAUST/SGP15_wftnet16_geovec_bspline.yaml --mode train --l2reg 0.0 --queue_size 5
+```
+
